@@ -6,7 +6,7 @@ use Pyncer\Component\Module\AbstractModule;
 use Pyncer\Data\Mapper\MapperInterface;
 use Pyncer\Data\MapperQuery\MapperQueryInterface;
 use Pyncer\Data\Model\ModelInterface;
-use Pyncer\Http\Message\DataResponse;
+use Pyncer\Http\Message\JsonResponse;
 use Pyncer\Http\Message\Status;
 
 use function max;
@@ -66,7 +66,7 @@ abstract class AbstractGetIndexModule extends AbstractModule
 
         $data = $this->getResponseIndexData($data);
 
-        return new DataResponse(
+        return new JsonResponse(
             Status::SUCCESS_200_OK,
             $data
         );

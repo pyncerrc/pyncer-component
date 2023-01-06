@@ -44,7 +44,7 @@ abstract class AbstractDeleteItemModule extends AbstractModule
             );
         }
 
-        return new JsonResponse(
+        return new Response(
             Status::SUCCESS_204_NO_CONTENT
         );
     }
