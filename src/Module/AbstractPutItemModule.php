@@ -39,7 +39,7 @@ abstract class AbstractPutItemModule extends AbstractModule
             $this->getRequiredItemData()
         );
 
-        list ($data, $errors) = $this->validateItemData($data);
+        [$data, $errors] = $this->validateItemData($data);
 
         if ($errors) {
             return new JsonResponse(

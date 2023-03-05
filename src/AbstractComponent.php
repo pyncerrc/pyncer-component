@@ -110,11 +110,21 @@ abstract class AbstractComponent implements
         return $this->response;
     }
 
+    /**
+     * Determines if the current request is valid.
+     *
+     * If it is not, a 404 status will be returned.
+     */
     protected function isValidRequest(): bool
     {
         return true;
     }
 
+    /**
+     * Determines if the the current request is authorized.
+     *
+     * If it is not, a 403 status will be returned.
+     */
     protected function isAuthorizedRequest(): bool
     {
         return true;
