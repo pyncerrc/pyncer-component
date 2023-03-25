@@ -5,6 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerAwareInterface as PsrLoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait as PsrLoggerAwareTrait;
+use Pyncer\Component\Authorizer;
 use Pyncer\Component\ComponentInterface;
 use Pyncer\Container\Exception\ContainerException;
 use Pyncer\Http\Message\RequestData;
@@ -26,6 +27,7 @@ abstract class AbstractComponent implements
     protected RequestData $parsedBody;
     protected RequestData $queryParams;
     protected RequestHandlerInterface $handler;
+    protected AuthorizerInterface $authorizer;
 
     public function __construct(
         PsrServerRequestInterface $request
@@ -45,6 +47,13 @@ abstract class AbstractComponent implements
         }
 
         $this->queryParams = RequestData::fromQueryParams($this->request);
+
+        $this->initializeAuthorizer();
+    }
+
+    protected function initializeAuthorizer(): void
+    {
+        $this->authorizer = new Authorizer();
     }
 
     public final function get(string $id): mixed
@@ -64,6 +73,11 @@ abstract class AbstractComponent implements
 
         $this->handler->set($id, $value);
         return $this;
+    }
+
+    public function getAuthorizer(): AuthorizerInterface
+    {
+        return $this->getAuthorizer;
     }
 
     public final function has(string $id): bool
