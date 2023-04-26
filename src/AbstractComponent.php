@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerAwareInterface as PsrLoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait as PsrLoggerAwareTrait;
-use Pyncer\Component\Authorizer;
+use Pyncer\Component\Authorizer\Authorizer;
 use Pyncer\Component\ComponentInterface;
 use Pyncer\Container\Exception\ContainerException;
 use Pyncer\Http\Message\RequestData;
@@ -77,7 +77,7 @@ abstract class AbstractComponent implements
 
     public function getAuthorizer(): AuthorizerInterface
     {
-        return $this->getAuthorizer;
+        return $this->authorizer;
     }
 
     public final function has(string $id): bool
@@ -141,7 +141,7 @@ abstract class AbstractComponent implements
      */
     protected function isAuthorizedRequest(): bool
     {
-        return true;
+        return $this->getAuthorizer()->isAuthorized($this);
     }
 
     protected function initializeResponse(): void

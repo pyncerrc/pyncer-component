@@ -1,7 +1,8 @@
 <?php
-namespace Pyncer\Component;
+namespace Pyncer\Component\Authorizer;
 
-use Pyncer\Component\AuthorizerInterface;
+use Pyncer\Component\Authorizer\AuthorizerInterface;
+use Pyncer\Component\Authorizer\Quantifier;
 use Pyncer\Component\ComponentInterface;
 
 class Authorizer implements AuthorizerInterface
@@ -10,6 +11,10 @@ class Authorizer implements AuthorizerInterface
      * @var array<AuthorizerInterface>
      */
     protected array $authorizers;
+
+    public function __construct(
+        protected Quantifier $quantifier = Quantifier::ALL
+    ) {}
 
     /**
      * @param AuthorizerInterface ...$authorizers
@@ -71,6 +76,43 @@ class Authorizer implements AuthorizerInterface
 
     public function isAuthorized(ComponentInterface $component): bool
     {
+        if ($this->quantifier === Quantifier::NONE) {
+            foreach ($authorizers as $authorizer) {
+                if ($authorizer->isAuthroized($component)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        if ($this->quantifier === Quantifier::ANY) {
+            foreach ($authorizers as $authorizer) {
+                if ($authorizer->isAuthroized($component)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        if ($this->quantifier === Quantifier::ONE) {
+            $isAuthorized = false;
+
+            foreach ($authorizers as $authorizer) {
+                if ($isAuthorized) {
+                    return false
+                }
+
+                if ($authorizer->isAuthroized($component)) {
+                    $isAuthorized = true;
+                }
+            }
+
+            return $isAuthorized;
+        }
+
+        // ALL
         foreach ($authorizers as $authorizer) {
             if (!$authorizer->isAuthroized($component)) {
                 return false;

@@ -1,5 +1,5 @@
 <?php
-namespace Pyncer\Component;
+namespace Pyncer\Component\Authorizer;
 
 use Pyncer\Component\ComponentInterface;
 
