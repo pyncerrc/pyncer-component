@@ -2,6 +2,7 @@
 namespace Pyncer\Component;
 
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
+use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerAwareInterface as PsrLoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait as PsrLoggerAwareTrait;
@@ -56,6 +57,11 @@ abstract class AbstractComponent implements
         $this->authorizer = new Authorizer();
     }
 
+    public function getAuthorizer(): AuthorizerInterface
+    {
+        return $this->authorizer;
+    }
+
     public final function get(string $id): mixed
     {
         if (!$this->handler) {
@@ -75,11 +81,6 @@ abstract class AbstractComponent implements
         return $this;
     }
 
-    public function getAuthorizer(): AuthorizerInterface
-    {
-        return $this->authorizer;
-    }
-
     public final function has(string $id): bool
     {
         if (!$this->handler) {
@@ -87,6 +88,21 @@ abstract class AbstractComponent implements
         }
 
         return $this->handler->has($id);
+    }
+
+    public function getRequest(): PsrRequestInterface
+    {
+        return $this->request;
+    }
+
+    public function getQueryParams(): RequestData
+    {
+        return $this->queryParams;
+    }
+
+    public function getParsedBody(): RequestData
+    {
+        return $this->parsedBody;
     }
 
     final public function getResponse(

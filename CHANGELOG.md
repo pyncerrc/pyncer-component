@@ -5,6 +5,7 @@
 ### Added
 
 - AuthorizerInterface for adding standard authorization criteria to components.
+- Exposed more component properties.
 
 ## 1.0.1 - 2023-01-05
 

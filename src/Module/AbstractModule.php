@@ -24,6 +24,16 @@ abstract class AbstractModule extends AbstractComponent implements
         $this->paths = $paths;
     }
 
+    public function getDir(): ?string
+    {
+        return $this->dir;
+    }
+
+    public function getPaths(): array
+    {
+        return $this->pahts;
+    }
+
     protected function isValidRequest(): bool
     {
         if (!$this->isValidPath()) {
