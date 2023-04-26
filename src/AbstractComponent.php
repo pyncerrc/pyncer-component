@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerAwareInterface as PsrLoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait as PsrLoggerAwareTrait;
 use Pyncer\Component\Authorizer\Authorizer;
+use Pyncer\Component\Authorizer\AuthorizerInterface;
 use Pyncer\Component\ComponentInterface;
 use Pyncer\Container\Exception\ContainerException;
 use Pyncer\Http\Message\RequestData;

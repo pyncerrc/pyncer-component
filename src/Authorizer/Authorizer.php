@@ -10,7 +10,7 @@ class Authorizer implements AuthorizerInterface
     /**
      * @var array<AuthorizerInterface>
      */
-    protected array $authorizers;
+    protected array $authorizers = [];
 
     public function __construct(
         protected Quantifier $quantifier = Quantifier::ALL
@@ -77,8 +77,8 @@ class Authorizer implements AuthorizerInterface
     public function isAuthorized(ComponentInterface $component): bool
     {
         if ($this->quantifier === Quantifier::NONE) {
-            foreach ($authorizers as $authorizer) {
-                if ($authorizer->isAuthroized($component)) {
+            foreach ($this->authorizers as $authorizer) {
+                if ($authorizer->isAuthorized($component)) {
                     return false;
                 }
             }
@@ -87,8 +87,8 @@ class Authorizer implements AuthorizerInterface
         }
 
         if ($this->quantifier === Quantifier::ANY) {
-            foreach ($authorizers as $authorizer) {
-                if ($authorizer->isAuthroized($component)) {
+            foreach ($this->authorizers as $authorizer) {
+                if ($authorizer->isAuthorized($component)) {
                     return true;
                 }
             }
@@ -99,12 +99,12 @@ class Authorizer implements AuthorizerInterface
         if ($this->quantifier === Quantifier::ONE) {
             $isAuthorized = false;
 
-            foreach ($authorizers as $authorizer) {
+            foreach ($this->authorizers as $authorizer) {
                 if ($isAuthorized) {
-                    return false
+                    return false;
                 }
 
-                if ($authorizer->isAuthroized($component)) {
+                if ($authorizer->isAuthorized($component)) {
                     $isAuthorized = true;
                 }
             }
@@ -113,8 +113,8 @@ class Authorizer implements AuthorizerInterface
         }
 
         // ALL
-        foreach ($authorizers as $authorizer) {
-            if (!$authorizer->isAuthroized($component)) {
+        foreach ($this->authorizers as $authorizer) {
+            if (!$authorizer->isAuthorized($component)) {
                 return false;
             }
         }
