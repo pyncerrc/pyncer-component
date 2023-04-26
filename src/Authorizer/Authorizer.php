@@ -100,11 +100,11 @@ class Authorizer implements AuthorizerInterface
             $isAuthorized = false;
 
             foreach ($this->authorizers as $authorizer) {
-                if ($isAuthorized) {
-                    return false;
-                }
-
                 if ($authorizer->isAuthorized($component)) {
+                    if ($isAuthorized) {
+                        return false;
+                    }
+
                     $isAuthorized = true;
                 }
             }
