@@ -1,17 +1,15 @@
 # Change Log
 
-## 1.1.1 - 2023-05-10
-
-### Changed
-
-- AbstractPatchItemModule and AbstractPutItemModule now have forgeMapperQuery functions.
-
-## 1.1.0 - 2023-04-26
+## 1.1.0 - 2023-05-10
 
 ### Added
 
 - AuthorizerInterface for adding standard authorization criteria to components.
 - Exposed more component properties.
+
+### Changed
+
+- AbstractPatchItemModule and AbstractPutItemModule now have forgeMapperQuery functions.
 
 ## 1.0.1 - 2023-01-05
 
