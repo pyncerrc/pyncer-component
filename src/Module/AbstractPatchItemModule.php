@@ -4,6 +4,7 @@ namespace Pyncer\Component\Module;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Pyncer\Component\Module\AbstractModule;
 use Pyncer\Data\Mapper\MapperInterface;
+use Pyncer\Data\MapperQuery\MapperQueryInterface;
 use Pyncer\Data\Model\ModelInterface;
 use Pyncer\Data\Validation\ValidatorInterface;
 use Pyncer\Database\Exception\QueryException;
@@ -122,6 +123,14 @@ abstract class AbstractPatchItemModule extends AbstractModule
     */
     abstract protected function forgeMapper(): MapperInterface;
 
+    /**
+    * @return \Pyncer\Data\MapperQuery\MapperQueryInterface
+    */
+    protected function forgeMapperQuery(): ?MapperQueryInterface
+    {
+        return null;
+    }
+
     protected function validateItemData(array $data): array
     {
         $validator = $this->forgeValidator();
@@ -131,7 +140,8 @@ abstract class AbstractPatchItemModule extends AbstractModule
     protected function forgeModel(int $id): ?ModelInterface
     {
         $mapper = $this->forgeMapper();
-        return $mapper->selectById($id);
+        $mapperQuery = $this->forgeMapperQuery();
+        return $mapper->selectById($id, $mapperQuery);
     }
 
     protected function isAuthorizedItem(ModelInterface $model): bool

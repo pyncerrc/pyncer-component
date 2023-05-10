@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1 - 2023-05-10
+
+### Changed
+
+- AbstractPatchItemModule and AbstractPutItemModule now have forgeMapperQuery functions.
+
 ## 1.1.0 - 2023-04-26
 
 ### Added

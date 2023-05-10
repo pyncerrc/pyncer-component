@@ -4,6 +4,7 @@ namespace Pyncer\Component\Module;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Pyncer\Component\Module\AbstractModule;
 use Pyncer\Data\Mapper\MapperInterface;
+use Pyncer\Data\MapperQuery\MapperQueryInterface;
 use Pyncer\Data\Model\ModelInterface;
 use Pyncer\Data\Validation\ValidatorInterface;
 use Pyncer\Database\Exception\QueryException;
@@ -129,6 +130,14 @@ abstract class AbstractPutItemModule extends AbstractModule
     */
     abstract protected function forgeMapper(): MapperInterface;
 
+    /**
+    * @return \Pyncer\Data\MapperQuery\MapperQueryInterface
+    */
+    protected function forgeMapperQuery(): ?MapperQueryInterface
+    {
+        return null;
+    }
+
     protected function validateItemData(array $data): array
     {
         $validator = $this->forgeValidator();
@@ -138,7 +147,11 @@ abstract class AbstractPutItemModule extends AbstractModule
     protected function forgeModel(int $id): ?ModelInterface
     {
         $mapper = $this->forgeMapper();
-        $model = $mapper->selectById($id);
+
+        // Mapper query is used to ensure any existing non matching model is
+        // cleared instead of merged
+        $mapperQuery = $this->forgeMapperQuery();
+        $model = $mapper->selectById($id, $mapperQuery);
 
         if (!$model) {
             $model = $mapper->forgeModel();
