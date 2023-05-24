@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.1 - 2023-05-24
+
+### Fixed
+
+- Missing required functions from ComponentInterface.
+- Paths parameter in Module and Page components ensured to be a list array.
+
 ## 1.1.0 - 2023-05-10
 
 ### Added

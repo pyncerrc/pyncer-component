@@ -21,7 +21,7 @@ abstract class AbstractModule extends AbstractComponent implements
         parent::__construct($request);
 
         $this->dir = ($dir !== null ? pyncer_io_clean_dir($dir) : $dir);
-        $this->paths = $paths;
+        $this->paths = array_values($paths);
     }
 
     public function getDir(): ?string
