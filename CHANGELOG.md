@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.0 - 2023-06-08
+
+### Added
+
+- Any data that is not associated with a model will now be added as extra data on the model in POST, PATCH, and PUT item modules.
+
 ## 1.1.1 - 2023-05-24
 
 ### Fixed

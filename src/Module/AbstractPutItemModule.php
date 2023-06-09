@@ -14,6 +14,7 @@ use Pyncer\Http\Message\Status;
 
 use function array_merge;
 use function Pyncer\Array\intersect_keys as pyncer_array_intersect_keys;
+use function Pyncer\Array\unset_keys as pyncer_array_unset_keys;
 
 abstract class AbstractPutItemModule extends AbstractModule
 {
@@ -51,9 +52,17 @@ abstract class AbstractPutItemModule extends AbstractModule
 
         if ($model->getId()) {
             $model->addData($data);
+
+            $data = pyncer_array_unset_keys($data, $model->getKeys());
+            $model->addExtraData($data);
+
             $insert = false;
         } else {
             $model->setData($data);
+
+            $data = pyncer_array_unset_keys($data, $model->getKeys());
+            $model->setExtraData($data);
+
             $insert = true;
         }
 

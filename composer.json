@@ -9,7 +9,7 @@
         "psr/http-message": "^1.0.1",
         "pyncer/container": "^1.0",
         "pyncer/core": "^1.0",
-        "pyncer/data": "^1.0",
+        "pyncer/data": "^1.2",
         "pyncer/database": "^1.0",
         "pyncer/exception": "^1.0",
         "pyncer/http": "^1.0",
