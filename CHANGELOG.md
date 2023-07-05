@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1 - 2023-07-05
+
+### Changed
+
+- AbstractDeleteItemModule now has a forgeMapperQuery function.
+
 ## 1.2.0 - 2023-06-08
 
 ### Added
