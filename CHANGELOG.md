@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2 - 2023-07-29
+
+### Fixed
+
+- Fixed bad property references in AbstractPage and AbstractModule getPaths() function.
+
 ## 1.2.1 - 2023-07-05
 
 ### Changed
