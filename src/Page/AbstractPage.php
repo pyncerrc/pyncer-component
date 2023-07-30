@@ -31,7 +31,7 @@ abstract class AbstractPage extends AbstractElement implements
 
     public function getPaths(): array
     {
-        return $this->pahts;
+        return $this->paths;
     }
 
     protected function isValidRequest(): bool

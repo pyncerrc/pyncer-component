@@ -31,7 +31,7 @@ abstract class AbstractModule extends AbstractComponent implements
 
     public function getPaths(): array
     {
-        return $this->pahts;
+        return $this->paths;
     }
 
     protected function isValidRequest(): bool
