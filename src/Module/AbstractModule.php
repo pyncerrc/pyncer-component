@@ -45,7 +45,7 @@ abstract class AbstractModule extends AbstractComponent implements
 
     protected function isValidPath(): bool
     {
-        if ($this->paths) {
+        if ($this->getPaths()) {
             return false;
         }
 

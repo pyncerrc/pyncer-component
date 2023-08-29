@@ -45,7 +45,7 @@ abstract class AbstractPage extends AbstractElement implements
 
     protected function isValidPath(): bool
     {
-        if ($this->paths) {
+        if ($this->getPaths()) {
             return false;
         }
 
