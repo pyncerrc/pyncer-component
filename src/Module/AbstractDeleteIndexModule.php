@@ -97,5 +97,8 @@ abstract class AbstractDeleteIndexModule extends AbstractModule
     /**
     * @return \Pyncer\Data\MapperQuery\MapperQueryInterface
     */
-    abstract protected function forgeMapperQuery(): ?MapperQueryInterface;
+    protected function forgeMapperQuery(): ?MapperQueryInterface
+    {
+        return null;
+    }
 }

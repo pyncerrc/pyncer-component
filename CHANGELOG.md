@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.3 - 2023-09-03
+
+### Changed
+
+- AbstractDeleteIndexModule::forgeMapperQuery() now has default implementation.
+
 ## 1.2.2 - 2023-07-29
 
 ### Fixed
