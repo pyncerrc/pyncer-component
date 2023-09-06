@@ -2,6 +2,7 @@
 namespace Pyncer\Component\Module;
 
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
+use Pyncer\App\Identifier as ID;
 use Pyncer\Component\Module\AbstractModule;
 use Pyncer\Data\Mapper\MapperInterface;
 use Pyncer\Data\MapperQuery\MapperQueryInterface;

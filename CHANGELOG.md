@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.4 - 2023-09-06
+
+### Fixed
+
+- Fixed missing use statement in AbstractDeleteIndexModule.
+
 ## 1.2.3 - 2023-09-03
 
 ### Changed
