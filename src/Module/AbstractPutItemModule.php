@@ -13,6 +13,7 @@ use Pyncer\Http\Message\Response;
 use Pyncer\Http\Message\Status;
 
 use function array_merge;
+use function Pyncer\Array\ensure_keys as pyncer_array_ensure_keys;
 use function Pyncer\Array\intersect_keys as pyncer_array_intersect_keys;
 use function Pyncer\Array\unset_keys as pyncer_array_unset_keys;
 
@@ -100,6 +101,7 @@ abstract class AbstractPutItemModule extends AbstractModule
         $keys = $this->getResponseItemKeys();
         if ($keys !== null) {
             $data = pyncer_array_intersect_keys($data, $keys);
+            $data = pyncer_array_ensure_keys($data, $keys);
         }
 
         return $data;
@@ -116,6 +118,7 @@ abstract class AbstractPutItemModule extends AbstractModule
         $keys = $this->getRequestItemKeys();
         if ($keys !== null) {
             $data = pyncer_array_intersect_keys($data, $keys);
+            $data = pyncer_array_ensure_keys($data, $keys);
         }
 
         return $data;

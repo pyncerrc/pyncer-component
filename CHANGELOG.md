@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.5 - Unreleased
+
+- Fixed possibility of request and response data missing keys.
+
 ## 1.2.4 - 2023-09-06
 
 ### Fixed

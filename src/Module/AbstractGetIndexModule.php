@@ -10,6 +10,7 @@ use Pyncer\Http\Message\JsonResponse;
 use Pyncer\Http\Message\Status;
 
 use function max;
+use function Pyncer\Array\ensure_keys as pyncer_array_ensure_keys;
 use function Pyncer\Array\intersect_keys as pyncer_array_intersect_keys;
 
 abstract class AbstractGetIndexModule extends AbstractModule
@@ -84,6 +85,7 @@ abstract class AbstractGetIndexModule extends AbstractModule
         $keys = $this->getResponseItemKeys();
         if ($keys !== null) {
             $data = pyncer_array_intersect_keys($data, $keys);
+            $data = pyncer_array_ensure_keys($data, $keys);
         }
 
         return $data;

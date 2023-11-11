@@ -10,6 +10,7 @@ use Pyncer\Http\Message\JsonResponse;
 use Pyncer\Http\Message\Response;
 use Pyncer\Http\Message\Status;
 
+use function Pyncer\Array\ensure_keys as pyncer_array_ensure_keys;
 use function Pyncer\Array\intersect_keys as pyncer_array_intersect_keys;
 
 abstract class AbstractGetItemModule extends AbstractModule
@@ -60,6 +61,7 @@ abstract class AbstractGetItemModule extends AbstractModule
         $keys = $this->getResponseItemKeys();
         if ($keys !== null) {
             $data = pyncer_array_intersect_keys($data, $keys);
+            $data = pyncer_array_ensure_keys($data, $keys);
         }
 
         return $data;
