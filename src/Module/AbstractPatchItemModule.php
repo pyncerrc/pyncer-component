@@ -19,6 +19,8 @@ use function Pyncer\Array\unset_keys as pyncer_array_unset_keys;
 
 abstract class AbstractPatchItemModule extends AbstractModule
 {
+    protected ?array $modelData = null;
+
     protected function getPrimaryResponse(): PsrResponseInterface
     {
         $id = $this->getItemId();
@@ -28,7 +30,7 @@ abstract class AbstractPatchItemModule extends AbstractModule
             );
         }
 
-        $model = $this->forgeModel($id);
+        $this->model = $this->forgeModel($id);
 
         if (!$model) {
             return new Response(
@@ -42,8 +44,10 @@ abstract class AbstractPatchItemModule extends AbstractModule
             );
         }
 
+        $this->modelData = $model->getData();
+
         $data = array_merge(
-            $model->getData(),
+            $this->modelData,
             $this->getRequestItemData(),
             $this->getRequiredItemData()
         );

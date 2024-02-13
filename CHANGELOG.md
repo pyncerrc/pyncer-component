@@ -3,6 +3,7 @@
 ## 1.2.5 - Unreleased
 
 - Fixed possibility of request and response data missing keys.
+- Made original model data accessible in Post and Patch item modules.
 
 ## 1.2.4 - 2023-09-06
 
