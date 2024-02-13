@@ -51,12 +51,19 @@ abstract class AbstractPostItemModule extends AbstractModule
             );
         }
 
-        return (new JsonResponse(
-            Status::SUCCESS_201_CREATED,
-            $this->getResponseItemData($model)
-        ))->withAddedHeader(
-            'Location',
-            $this->getResourceUrl($model)
+        $body = $this->getResponseItemData($model);
+        if ($body) {
+            return (new JsonResponse(
+                Status::SUCCESS_201_CREATED,
+                $body,
+            ))->withAddedHeader(
+                'Location',
+                $this->getResourceUrl($model),
+            );
+        }
+
+        return new Response(
+            Status::SUCCESS_204_NO_CONTENT,
         );
     }
 

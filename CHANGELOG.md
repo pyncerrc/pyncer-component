@@ -2,8 +2,17 @@
 
 ## 1.2.5 - Unreleased
 
-- Fixed possibility of request and response data missing keys.
+### Added
+
 - Made original model data accessible in Post and Patch item modules.
+
+### Fixed
+
+- Fixed possibility of request and response data missing keys.
+
+### Changed
+
+- Post, patch, and put item modules will now return a 204 No Content response if body is empty.
 
 ## 1.2.4 - 2023-09-06
 

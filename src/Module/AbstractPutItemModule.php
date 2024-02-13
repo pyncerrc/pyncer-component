@@ -80,17 +80,24 @@ abstract class AbstractPutItemModule extends AbstractModule
             );
         }
 
-        if ($insert) {
-            return new JsonResponse(
-                Status::SUCCESS_201_CREATED,
-                $this->getResponseItemData($model)
-            );
-        } else {
-            return new JsonResponse(
-                Status::SUCCESS_200_OK,
-                $this->getResponseItemData($model)
-            );
+        $body = $this->getResponseItemData($model);
+        if ($body) {
+            if ($insert) {
+                return new JsonResponse(
+                    Status::SUCCESS_201_CREATED,
+                    $body,
+                );
+            } else {
+                return new JsonResponse(
+                    Status::SUCCESS_200_OK,
+                    $body,
+                );
+            }
         }
+
+        return new Response(
+            Status::SUCCESS_204_NO_CONTENT,
+        );
     }
 
     protected function getItemId(): int

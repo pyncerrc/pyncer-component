@@ -75,9 +75,16 @@ abstract class AbstractPatchItemModule extends AbstractModule
             );
         }
 
-        return new JsonResponse(
-            Status::SUCCESS_200_OK,
-            $this->getResponseItemData($model)
+        $body = $this->getResponseItemData($model);
+        if ($body) {
+            return new JsonResponse(
+                Status::SUCCESS_200_OK,
+                $body,
+            );
+        }
+
+        return new Response(
+            Status::SUCCESS_204_NO_CONTENT,
         );
     }
 
