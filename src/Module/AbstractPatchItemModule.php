@@ -30,7 +30,7 @@ abstract class AbstractPatchItemModule extends AbstractModule
             );
         }
 
-        $this->model = $this->forgeModel($id);
+        $model = $this->forgeModel($id);
 
         if (!$model) {
             return new Response(
