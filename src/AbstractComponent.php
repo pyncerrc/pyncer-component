@@ -2,7 +2,6 @@
 namespace Pyncer\Component;
 
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
-use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerAwareInterface as PsrLoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait as PsrLoggerAwareTrait;
@@ -91,7 +90,7 @@ abstract class AbstractComponent implements
         return $this->handler->has($id);
     }
 
-    public function getRequest(): PsrRequestInterface
+    public function getRequest(): PsrServerRequestInterface
     {
         return $this->request;
     }

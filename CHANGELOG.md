@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.6 - Unreleased
+
+### Changed
+
+- ComponenetInterface::getRequest() method now returns ServerRequestInterface instead of RequestInterface.
+
 ## 1.2.5 - 2024-03-22
 
 ### Added
