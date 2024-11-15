@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.2.6 - Unreleased
+## 1.2.6 - 2024-11-15
 
 ### Changed
 
