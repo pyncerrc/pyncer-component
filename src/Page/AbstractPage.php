@@ -15,8 +15,8 @@ abstract class AbstractPage extends AbstractElement implements
 
     public function __construct(
         PsrServerRequestInterface $request,
-        ?string $dir,
-        array $paths,
+        ?string $dir = null,
+        array $paths = [],
     ) {
         parent::__construct($request);
 

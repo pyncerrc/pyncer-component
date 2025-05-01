@@ -1,9 +1,14 @@
 # Change Log
 
-## 1.2.7 - Unreleased
+## 1.3.0 - Unreleased
+
+### Added
+
+- Added getRequestHandler function to AbstractComponent.
 
 ### Changed
 
+- AbstractModule and AbstractPage constructor now has more default parameters.
 - Updated psr/http-message to 2.0.
 
 ## 1.2.6 - 2024-11-15

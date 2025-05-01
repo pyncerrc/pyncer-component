@@ -62,6 +62,11 @@ abstract class AbstractComponent implements
         return $this->authorizer;
     }
 
+    public function getRequestHandler(): ?RequestHandlerInterface
+    {
+        return $this->handler;
+    }
+
     public final function get(string $id): mixed
     {
         if (!$this->handler) {
